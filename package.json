@@ -1,11 +1,11 @@
 {
-  "name": "feb23-t3-mongoose-intro",
+  "name": "feb23-t3w11-mongoose-intro",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node src/index.js",
-    "dev": "nodemon src/index.js",
+    "start":"node src/index.js",
+    "dev":"nodemon src/index.js",
     "seed": "node src/seed.js"
   },
   "keywords": [],
