@@ -1,6 +1,6 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
-const { Schema } = require("mongoose");
 
 const CatSchema = new Schema({
     name: {
@@ -47,6 +47,12 @@ const CatSchema = new Schema({
         type: [String],
         required: false,
         unique: false
+    },
+    breed: {
+        type: String,
+        required: true,
+        unique: false
+    
     }
 });
 
