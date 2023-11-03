@@ -3,6 +3,8 @@ require('dotenv').config();
 const mongoose = require('mongoose');
 const { databaseConnect } = require('./database');
 const { Cat } = require('./models/CatModel');
+const { User } = require('./models/UserModel');
+const { Sighting } = require('./models/SightingsModel');
 
 databaseConnect().then(async () => {
 
@@ -34,10 +36,28 @@ databaseConnect().then(async () => {
 		favouriteToys: ["Zach's keyboard", "coffee mugs", "string"],
 		photos: ["http://google.com"]
 	})
-
 	await newLina.save().then(() => {
 		console.log(`${newLina.name} is in the DB`);
 	});
 
+	let newUser = await User.create({
+		username: "CatLord",
+		password: "CatsRule1"
+	});
 
+	let newSighting = await Sighting.create({
+		location: "Sydney",
+		user: newUser._id,
+		cats: [
+			newLina._id
+		]
+	});
+
+	console.log(newSighting);
+
+
+
+}).then(async () => {
+	//imaginary dbDisconnect() 
+	// await dbDisconnect();
 })
