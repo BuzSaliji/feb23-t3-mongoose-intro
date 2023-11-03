@@ -8,7 +8,7 @@ async function databaseConnect(){
 	try {
         // DB connection can take som time, eg. if DB is in the cloud
 		console.log("Connecting to database...");
-		await mongoose.connect(process.env.DB_URI_LOCAL);
+		await mongoose.connect(process.env.DB_URI);
 		console.log("Database connected");
 	} catch (error) {
 		console.warn(`databaseConnect failed to connect to DB:\n${JSON.stringify(error)}`);
