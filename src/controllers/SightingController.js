@@ -1,5 +1,5 @@
 const express = require('express');
-const { Sighting } = require('../models/SightingModel');
+const { Sighting } = require('../models/SightingsModel');
 const router = express.Router();
 
 // Find ALL sightings in the DB
@@ -39,19 +39,26 @@ router.get("/multiple/location/:locationToSearchFor", async (request, response) 
 
 // Create a new cat in the DB
 // POST localhost:3000/sightings/
-
+/*
+Request.body:
+{
+	location: "Sydney",
+	user: "jbhasdpf;klanbsfdgpk;sldejbnf",
+	cats: [
+		"kjhtfgvkljzsddhfbnvds"
+	]
+}
+*/
 router.post("/", async (request, response) => {
 
-	// Error handling via try-catch
-	// let result = null;
-	// try {
-	// 	result = await Cat.create(request.body);
-	// } catch (error) {
-	// 	result = error;
-	// }
+	// let providedUser = await User.findOne({id: request.body.user});
+	// providedUser._id
 
 	// Error handling via Promise.catch()
 	let result = await Sighting.create(request.body).catch(error => {return error});
+	// await user.populate('company').execPopulate()
+	result = await result.populate('cats');
+	result = await result.populate('user', 'username');
 	
 
 	response.json({
